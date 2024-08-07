@@ -108,7 +108,7 @@ pub struct PostgresChangeData {
     pub columns: Vec<PostgresColumn>,
     pub commit_timestamp: String,
     pub errors: Option<String>,
-    pub old_record: Option<PostgresOldDataRef>,
+    pub old_record: Option<HashMap<String, Value>>,
     pub record: Option<HashMap<String, Value>>,
     #[serde(rename = "type")]
     pub change_type: PostgresChangesEvent,
@@ -121,11 +121,6 @@ pub struct PostgresColumn {
     pub name: String,
     #[serde(rename = "type")]
     pub column_type: String,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct PostgresOldDataRef {
-    pub id: isize,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
